@@ -120,7 +120,7 @@ const Landing = () => {
               Why Choose explainly.ai?
             </h2>
             <p className="text-lg text-explainly-gray max-w-3xl mx-auto">
-              See how our platform compares to traditional study methods and other tools.
+              Our platform stands out with personalized learning experiences tailored to your needs.
             </p>
           </div>
 
@@ -136,37 +136,77 @@ const Landing = () => {
               </thead>
               <tbody>
                 <tr className="border-b border-gray-200">
-                  <td className="p-4 font-medium">Time to Process</td>
-                  <td className="p-4 text-center text-green-500">Seconds</td>
-                  <td className="p-4 text-center text-red-500">Hours</td>
-                  <td className="p-4 text-center text-yellow-500">Minutes</td>
-                </tr>
-                <tr className="border-b border-gray-200">
-                  <td className="p-4 font-medium">Learning Optimized</td>
-                  <td className="p-4 text-center text-green-500">✓</td>
-                  <td className="p-4 text-center text-red-500">✗</td>
-                  <td className="p-4 text-center text-red-500">✗</td>
-                </tr>
-                <tr className="border-b border-gray-200">
-                  <td className="p-4 font-medium">Quiz Generation</td>
+                  <td className="p-4 font-medium">Personalized Learning</td>
                   <td className="p-4 text-center text-green-500">✓</td>
                   <td className="p-4 text-center text-red-500">✗</td>
                   <td className="p-4 text-center text-yellow-500">Limited</td>
                 </tr>
                 <tr className="border-b border-gray-200">
-                  <td className="p-4 font-medium">Flashcard Creation</td>
+                  <td className="p-4 font-medium">Performance Analysis</td>
                   <td className="p-4 text-center text-green-500">✓</td>
                   <td className="p-4 text-center text-red-500">✗</td>
                   <td className="p-4 text-center text-red-500">✗</td>
                 </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="p-4 font-medium">Interactive Exercises</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                  <td className="p-4 text-center text-yellow-500">Limited</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="p-4 font-medium">Visual Learning Tools</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="p-4 font-medium">Audience Range</td>
+                  <td className="p-4 text-center text-green-500">Broad</td>
+                  <td className="p-4 text-center text-yellow-500">Limited</td>
+                  <td className="p-4 text-center text-yellow-500">Medium</td>
+                </tr>
                 <tr>
-                  <td className="p-4 font-medium">Content Accuracy</td>
-                  <td className="p-4 text-center text-green-500">High</td>
-                  <td className="p-4 text-center text-yellow-500">Medium</td>
-                  <td className="p-4 text-center text-yellow-500">Medium</td>
+                  <td className="p-4 font-medium">Educator Support</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                  <td className="p-4 text-center text-yellow-500">Limited</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+            <div className="bg-explainly-lightGray p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-3">Tailored Learning Experience</h3>
+              <p className="text-explainly-gray">
+                Our tool reshapes transcripts into highly personalized exercises, summaries, 
+                and visual aids based on your preferences and learning style.
+              </p>
+            </div>
+
+            <div className="bg-explainly-lightGray p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-3">Beyond Just Summaries</h3>
+              <p className="text-explainly-gray">
+                We evaluate performance, identify areas for improvement, and provide actionable 
+                feedback to support knowledge retention and growth.
+              </p>
+            </div>
+
+            <div className="bg-explainly-lightGray p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-3">For Everyone</h3>
+              <p className="text-explainly-gray">
+                Whether you're a student, educator, parent, corporate trainer, or lifelong 
+                learner, our platform adapts to your specific needs.
+              </p>
+            </div>
+
+            <div className="bg-explainly-lightGray p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-3">Empowering Educators</h3>
+              <p className="text-explainly-gray">
+                Create interactive teaching materials quickly and efficiently, saving time 
+                while enhancing the quality of lessons.
+              </p>
+            </div>
           </div>
         </Container>
       </section>
