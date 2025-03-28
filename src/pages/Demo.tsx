@@ -85,6 +85,30 @@ const Demo = () => {
     }
   };
 
+  const sendToN8NWebhook = async (filePath: string): Promise<any> => {
+    try {
+      const webhookUrl = "https://almanakmap.app.n8n.cloud/webhook-test/explainly.ai";
+      
+      // Set up proper headers and body
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ file_path: filePath }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error sending to N8N webhook:", error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -115,22 +139,7 @@ const Demo = () => {
       const { transcriptId, filePath } = await uploadToSupabase(file);
       
       // Now send the file_path to the N8N webhook
-      const response = await fetch(
-        "https://almanakmap.app.n8n.cloud/webhook-test/explainly.ai",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ file_path: filePath }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      const data = await sendToN8NWebhook(filePath);
       const summary = data.summary || "Here's a summary of the content you submitted.";
       
       // Store the summary in Supabase
