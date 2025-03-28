@@ -131,3 +131,24 @@ export const saveSupabaseSummary = async (summary: string, transcriptId: string)
     return false;
   }
 };
+
+// Add a new function to get a summary for a transcript
+export const getSummaryForTranscript = async (transcriptId: string): Promise<string | null> => {
+  try {
+    const { data, error } = await supabase
+      .from('summaries')
+      .select('content')
+      .eq('transcript_id', transcriptId)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Error fetching summary:", error);
+      return null;
+    }
+
+    return data?.content || null;
+  } catch (error) {
+    console.error("Error in getSummaryForTranscript:", error);
+    return null;
+  }
+};

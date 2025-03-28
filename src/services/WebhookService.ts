@@ -18,9 +18,9 @@ export const sendToN8NWebhook = async (filePath: string): Promise<any> => {
       body: JSON.stringify({ file_path: filePath }),
     });
 
-    // When using no-cors, we can't access response details
-    // Return an error indicating processing failed
-    throw new Error("Unable to process file due to network restrictions");
+    // When using no-cors, we won't get a full response
+    console.log("Webhook request sent, waiting for processing");
+    return true;
   } catch (error) {
     console.error("Error sending to N8N webhook:", error);
     throw error; // Re-throw the error to be handled by the caller
