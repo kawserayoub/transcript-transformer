@@ -27,7 +27,7 @@ const Navbar = () => {
               Demo
             </Link>
             <Link to="/summary-preview" className="text-explainly-navy hover:text-explainly-blue transition-colors">
-              Summary
+              Previews
             </Link>
             <Link to="/about" className="text-explainly-navy hover:text-explainly-blue transition-colors">
               About
@@ -69,7 +69,7 @@ const Navbar = () => {
                 className="text-explainly-navy hover:text-explainly-blue transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Summary
+                Previews
               </Link>
               <Link
                 to="/about"
