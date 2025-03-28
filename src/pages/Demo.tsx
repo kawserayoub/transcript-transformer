@@ -52,19 +52,19 @@ const Demo = () => {
 
   const uploadToSupabase = async (file: File): Promise<{ transcriptId: string, filePath: string }> => {
     try {
-      // Read the file as text
-      const fileContent = await file.text();
-      
       // Generate a unique file path
       const filePathBucket = crypto.randomUUID();
       const filePathName = crypto.randomUUID() + '.' + file.name.split('.').pop();
       const filePath = `${filePathBucket}/${filePathName}`;
 
+      // For binary files, we'll just store the file name and type in Supabase
+      // We won't try to read the content as text
+      
       // Upload to Supabase transcripts table
       const { data, error } = await supabase
         .from('transcripts')
         .insert({
-          content: fileContent,
+          content: "File content stored externally", // Just store a placeholder
           file_name: file.name,
           file_type: file.type,
           file_path: filePath,
