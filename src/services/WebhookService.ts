@@ -2,7 +2,7 @@
 export const sendToN8NWebhook = async (filePath: string): Promise<any> => {
   try {
     // Using the correct webhook URL
-    const webhookUrl = "https://almanakmap.app.n8n.cloud/webhook-test/explainly.ai";
+    const webhookUrl = "https://almanakmap.app.n8n.cloud/webhook/explainly.ai";
     
     console.log("Sending webhook request to:", webhookUrl);
     console.log("With file path:", filePath);
