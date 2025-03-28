@@ -19,19 +19,10 @@ export const sendToN8NWebhook = async (filePath: string): Promise<any> => {
     });
 
     // When using no-cors, we can't access response details
-    // So we'll return a simulated success with explanatory message
-    return { 
-      summary: `The uploaded file is being processed by our AI system. Here's what happens:\n\n` +
-               `1. Your file (${filePath.split('/').pop()}) was stored in our system\n` +
-               `2. The AI is analyzing the transcript content\n` +
-               `3. You'll receive a concise, structured summary\n\n` +
-               `Due to network restrictions in this demo, we're showing this placeholder. In production, this would be replaced with the actual AI-generated summary from your transcript.` 
-    };
+    // Return an error indicating processing failed
+    throw new Error("Unable to process file due to network restrictions");
   } catch (error) {
     console.error("Error sending to N8N webhook:", error);
-    // Return a fallback response instead of throwing
-    return { 
-      summary: "We encountered an issue connecting to our processing service. Your file was successfully uploaded and will be processed when connectivity is restored." 
-    };
+    throw error; // Re-throw the error to be handled by the caller
   }
 };

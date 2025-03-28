@@ -49,25 +49,12 @@ const Demo = () => {
       const { transcriptId, filePath } = await uploadToSupabase(file);
       
       // Now send the file_path to the N8N webhook
-      const data = await sendToN8NWebhook(filePath);
+      // This will throw an error in the demo environment
+      await sendToN8NWebhook(filePath);
       
-      // Get the summary from the N8N response
-      const summary = data.summary;
+      // If we reach this point, processing was successful (which won't happen in demo)
+      // Code below won't execute in demo mode due to the error thrown in sendToN8NWebhook
       
-      // Store the summary in Supabase - but don't throw if it fails
-      const saveSuccess = await saveSupabaseSummary(summary, transcriptId);
-      
-      if (!saveSuccess) {
-        console.log("Note: Summary was not saved to database due to permissions, but will still be displayed");
-      }
-
-      // Set the summary result to be displayed
-      setSummaryResult(summary);
-      
-      toast({
-        title: "Success!",
-        description: "Your file has been processed successfully.",
-      });
     } catch (error) {
       console.error("Error processing file:", error);
       toast({
