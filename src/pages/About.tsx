@@ -29,8 +29,7 @@ const About = () => {
             <div className="w-full h-1 gradient-bg rounded-full my-8"></div>
             <h2 className="text-2xl font-semibold mb-4">Our Story</h2>
             <p className="text-explainly-gray mb-6">
-              explainly.ai was created by a team of educators, AI researchers, and learning 
-              enthusiasts who were frustrated with the inefficiency of traditional learning methods.
+              explainly.ai was created out of a frustration with the inefficiency of traditional learning methods.
               We saw the potential for AI to transform raw information into structured knowledge
               that's easier to understand and remember.
             </p>
@@ -64,9 +63,9 @@ const About = () => {
               </ul>
             </div>
             <div className="bg-white rounded-xl shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">The Team</h3>
+              <h3 className="text-xl font-semibold mb-4">Our Expertise</h3>
               <p className="text-explainly-gray mb-4">
-                Our team combines expertise in:
+                Our work combines expertise in:
               </p>
               <ul className="space-y-3 text-explainly-gray">
                 <li className="flex items-start">
