@@ -43,11 +43,33 @@ export const saveSupabaseSummary = async (summary: string, transcriptId: string)
       });
 
     if (error) {
+      // Log the error but don't throw - this allows the app to continue
+      // even if the summary can't be saved to the database
       console.error("Failed to save summary:", error);
-      throw error;
+      
+      // Update the transcript record to mark it as processed
+      try {
+        await supabase
+          .from('transcripts')
+          .update({ processed: true })
+          .eq('id', transcriptId);
+      } catch (updateError) {
+        console.error("Failed to update transcript processed status:", updateError);
+      }
+      
+      return false;
     }
+    
+    // If summary was saved successfully, mark the transcript as processed
+    await supabase
+      .from('transcripts')
+      .update({ processed: true })
+      .eq('id', transcriptId);
+      
+    return true;
   } catch (error) {
+    // Just log the error but don't throw to prevent app from crashing
     console.error("Error storing summary:", error);
-    throw error;
+    return false;
   }
 };

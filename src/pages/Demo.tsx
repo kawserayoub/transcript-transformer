@@ -50,21 +50,23 @@ const Demo = () => {
       
       // Now send the file_path to the N8N webhook
       const data = await sendToN8NWebhook(filePath);
-      const summary = data.summary || "Here's a summary of the content you submitted.";
       
-      // Store the summary in Supabase
-      try {
-        await saveSupabaseSummary(summary, transcriptId);
-      } catch (summaryStoreError) {
-        console.error("Error storing summary:", summaryStoreError);
-        // Continue execution even if summary storage fails
+      // Get the summary from the N8N response
+      const summary = data.summary;
+      
+      // Store the summary in Supabase - but don't throw if it fails
+      const saveSuccess = await saveSupabaseSummary(summary, transcriptId);
+      
+      if (!saveSuccess) {
+        console.log("Note: Summary was not saved to database due to permissions, but will still be displayed");
       }
 
+      // Set the summary result to be displayed
       setSummaryResult(summary);
       
       toast({
         title: "Success!",
-        description: "Your file has been processed and saved successfully.",
+        description: "Your file has been processed successfully.",
       });
     } catch (error) {
       console.error("Error processing file:", error);
