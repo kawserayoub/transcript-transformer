@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Container from "@/components/Container";
 import FeatureCard from "@/components/FeatureCard";
@@ -31,33 +30,14 @@ const Landing = () => {
             </div>
             <div className="md:w-1/2 animate-slide-up">
               <div className="relative">
-                <div className="hero-card">
-                  <div className="flex items-center space-x-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                    <div className="ml-2 text-sm text-explainly-gray">Transcript Processing</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-4 bg-explainly-lightGray rounded-full w-full"></div>
-                    <div className="h-4 bg-explainly-lightGray rounded-full w-5/6"></div>
-                    <div className="h-4 bg-explainly-lightGray rounded-full w-4/5"></div>
-                  </div>
-                  <div className="mt-6 p-4 rounded-lg bg-explainly-lightGray">
-                    <div className="flex items-center mb-2">
-                      <div className="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
-                        <Brain className="w-4 h-4 text-white" />
-                      </div>
-                      <div className="ml-3 font-medium">AI Summary</div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="h-3 bg-white rounded-full w-full"></div>
-                      <div className="h-3 bg-white rounded-full w-5/6"></div>
-                      <div className="h-3 bg-white rounded-full w-3/4"></div>
-                    </div>
-                  </div>
+                <div className="rounded-2xl overflow-hidden shadow-lg">
+                  <img 
+                    src="https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1048&q=80" 
+                    alt="Frustrated student struggling with study materials" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-explainly-blue rounded-xl opacity-10"></div>
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-explainly-blue rounded-xl opacity-10"></div>
               </div>
             </div>
           </div>
