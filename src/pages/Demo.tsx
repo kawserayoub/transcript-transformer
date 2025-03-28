@@ -88,8 +88,8 @@ const Demo = () => {
 
   const sendToN8NWebhook = async (filePath: string): Promise<any> => {
     try {
-      // Updated webhook URL to match the format in the cURL command
-      const webhookUrl = "https://almanakmap.app.n8n.cloud/webhook/833efd65-7a27-48ca-8628-cb0e16c68e46";
+      // Using the correct webhook URL
+      const webhookUrl = "https://almanakmap.app.n8n.cloud/webhook-test/explainly.ai";
       
       console.log("Sending webhook request to:", webhookUrl);
       console.log("With file path:", filePath);
