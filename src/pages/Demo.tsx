@@ -1,9 +1,10 @@
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Upload, AlertCircle, Loader } from "lucide-react";
+import { Upload, Loader } from "lucide-react";
 import Container from "@/components/Container";
 import SummaryCard from "@/components/SummaryCard";
+import { supabase } from "@/integrations/supabase/client";
 
 const Demo = () => {
   const { toast } = useToast();
@@ -49,6 +50,32 @@ const Demo = () => {
     }
   };
 
+  const uploadToSupabase = async (file: File, content: string) => {
+    try {
+      // Upload to Supabase transcripts table
+      const { data, error } = await supabase
+        .from('transcripts')
+        .insert({
+          content: content,
+          file_name: file.name,
+          file_type: file.type,
+          processed: false
+        })
+        .select();
+
+      if (error) {
+        console.error("Supabase upload error:", error);
+        throw new Error("Failed to save transcript to database");
+      }
+
+      console.log("File uploaded to Supabase:", data);
+      return data[0].id;
+    } catch (error) {
+      console.error("Error in uploadToSupabase:", error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -70,7 +97,6 @@ const Demo = () => {
         if (prev < steps.length - 1) {
           return prev + 1;
         }
-        clearInterval(stepInterval);
         return prev;
       });
     }, 1500);
@@ -79,6 +105,7 @@ const Demo = () => {
     formData.append("file", file);
 
     try {
+      // First process with n8n webhook
       const response = await fetch(
         "https://almanakmap.app.n8n.cloud/webhook-test/explainly.ai",
         {
@@ -87,18 +114,36 @@ const Demo = () => {
         }
       );
 
-      clearInterval(stepInterval);
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
-      setSummaryResult(data.summary || "Here's a summary of the content you submitted.");
+      const summary = data.summary || "Here's a summary of the content you submitted.";
+      
+      // Read the file content to store in Supabase
+      const fileContent = await file.text();
+      
+      // Upload to Supabase
+      const transcriptId = await uploadToSupabase(file, fileContent);
+      
+      // Store the summary in Supabase
+      const { error: summaryError } = await supabase
+        .from('summaries')
+        .insert({
+          content: summary,
+          transcript_id: transcriptId
+        });
+
+      if (summaryError) {
+        console.error("Failed to save summary:", summaryError);
+      }
+
+      setSummaryResult(summary);
       
       toast({
         title: "Success!",
-        description: "Your file has been processed successfully.",
+        description: "Your file has been processed and saved successfully.",
       });
     } catch (error) {
       console.error("Error processing file:", error);
@@ -108,19 +153,20 @@ const Demo = () => {
         variant: "destructive",
       });
     } finally {
+      clearInterval(stepInterval);
       setIsLoading(false);
     }
   };
 
-  const triggerFileInput = () => {
+  const triggerFileInput = useCallback(() => {
     fileInputRef.current?.click();
-  };
+  }, []);
 
-  const resetDemo = () => {
+  const resetDemo = useCallback(() => {
     setFile(null);
     setSummaryResult(null);
     setCurrentStep(0);
-  };
+  }, []);
 
   return (
     <div className="bg-explainly-lightGray min-h-screen">
@@ -216,20 +262,6 @@ const Demo = () => {
                 </button>
               </div>
             )}
-          </div>
-
-          <div className="mt-8 bg-white rounded-xl shadow-md p-6 animate-fade-in">
-            <div className="flex items-start">
-              <AlertCircle className="w-6 h-6 text-explainly-blue shrink-0 mr-3 mt-0.5" />
-              <div>
-                <h3 className="font-semibold text-explainly-navy">How it works</h3>
-                <p className="text-sm text-explainly-gray mt-1">
-                  This demo uploads your file to our n8n webhook that processes the content using
-                  AI to generate a concise summary. In the full version, explainly.ai provides
-                  additional learning tools like flashcards, quizzes, and concept highlighting.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </Container>

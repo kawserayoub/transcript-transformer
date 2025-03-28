@@ -43,6 +43,7 @@ export type Database = {
           content: string
           created_at: string
           file_name: string | null
+          file_path: string | null
           file_type: string | null
           id: string
           processed: boolean | null
@@ -51,6 +52,7 @@ export type Database = {
           content: string
           created_at?: string
           file_name?: string | null
+          file_path?: string | null
           file_type?: string | null
           id?: string
           processed?: boolean | null
@@ -59,6 +61,7 @@ export type Database = {
           content?: string
           created_at?: string
           file_name?: string | null
+          file_path?: string | null
           file_type?: string | null
           id?: string
           processed?: boolean | null
