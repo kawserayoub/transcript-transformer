@@ -1,7 +1,9 @@
+
 import { Link } from "react-router-dom";
 import Container from "@/components/Container";
 import FeatureCard from "@/components/FeatureCard";
-import { Brain, FileText, Zap, Lightbulb, BookOpen, Users } from "lucide-react";
+import WhyChooseUsCard from "@/components/WhyChooseUsCard";
+import { Brain, FileText, Zap, Lightbulb, BookOpen, Users, Award, Layers } from "lucide-react";
 
 const Landing = () => {
   return (
@@ -40,6 +42,54 @@ const Landing = () => {
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-explainly-blue rounded-xl opacity-10"></div>
               </div>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-16 md:py-24 bg-white">
+        <Container>
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Why Choose <span className="gradient-text">Explainly</span>
+            </h2>
+            <p className="text-lg text-explainly-gray max-w-3xl mx-auto">
+              Our solution stands out with its focus on personalization, adaptability, and versatility
+              that transforms how you learn and teach.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-slide-up">
+            <WhyChooseUsCard
+              title="Tailored Learning Experiences"
+              description="Unlike competitors, we reshape content into highly personalized exercises based on your unique learning style."
+              icon={<Award className="w-6 h-6 text-white" />}
+              number="1"
+            />
+            <WhyChooseUsCard
+              title="Performance Evaluation"
+              description="We identify areas for improvement and provide actionable feedback to support knowledge retention and growth."
+              icon={<Layers className="w-6 h-6 text-white" />}
+              number="2"
+            />
+            <WhyChooseUsCard
+              title="Broad Applicability"
+              description="Our platform caters to students, educators, corporate trainers, and lifelong learners in both academic and professional settings."
+              icon={<Users className="w-6 h-6 text-white" />}
+              number="3"
+            />
+            <WhyChooseUsCard
+              title="Educator-Friendly"
+              description="Empower educators to create interactive teaching materials quickly, saving time while enhancing lesson quality."
+              icon={<BookOpen className="w-6 h-6 text-white" />}
+              number="4"
+            />
+            <WhyChooseUsCard
+              title="Interactive Learning Formats"
+              description="Support diverse formats like visual aids and interactive exercises for different learning preferences."
+              icon={<Zap className="w-6 h-6 text-white" />}
+              number="5"
+            />
           </div>
         </Container>
       </section>
