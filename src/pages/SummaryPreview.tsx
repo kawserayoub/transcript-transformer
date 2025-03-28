@@ -5,7 +5,7 @@ import SummaryCard from "@/components/SummaryCard";
 import { BookOpen, LightbulbIcon } from "lucide-react";
 
 const SummaryPreview = () => {
-  const exampleSummary = `# Introduction to Neural Networks
+  const exampleSummary = `Introduction to Neural Networks
 
 Neural networks are computational models inspired by the human brain's structure and function. They consist of interconnected nodes or "neurons" organized in layers.
 
@@ -29,8 +29,8 @@ Recent advances in deep learning involve networks with many hidden layers, enabl
   const highlightedSummary = exampleSummary
     .replace(/\*\*(.*?)\*\*/g, '<span class="font-semibold text-explainly-blue">$1</span>')
     .replace(/\*(.*?)\*/g, '<span class="italic">$1</span>')
-    .replace(/# (.*)/g, '<h2 class="text-xl font-bold mt-4 mb-2">$1</h2>')
-    .replace(/## (.*)/g, '<h3 class="text-lg font-semibold mt-3 mb-2">$1</h3>')
+    .replace(/^# (.*)/gm, '<h2 class="text-xl font-bold mt-4 mb-2">$1</h2>')
+    .replace(/^## (.*)/gm, '<h3 class="text-lg font-semibold mt-3 mb-2">$1</h3>')
     .replace(/- (.*)/g, '<li class="ml-6 list-disc">$1</li>')
     .split('\n\n').join('</p><p class="mb-3">')
     .split('\n').join('<br>');
