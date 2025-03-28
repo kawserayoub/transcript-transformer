@@ -45,15 +45,21 @@ const Demo = () => {
     }, 1500);
 
     try {
-      // First upload to Supabase to get transcript ID and file path
+      // Upload to Supabase to get transcript ID and file path
+      // This will now also read and store the actual file content
       const { transcriptId, filePath } = await uploadToSupabase(file);
       
-      // Now send the file_path to the N8N webhook
-      // This will throw an error in the demo environment
-      await sendToN8NWebhook(filePath);
-      
-      // If we reach this point, processing was successful (which won't happen in demo)
-      // Code below won't execute in demo mode due to the error thrown in sendToN8NWebhook
+      try {
+        // Try to send to N8N webhook (this will fail in demo mode)
+        await sendToN8NWebhook(filePath);
+      } catch (webhookError) {
+        console.error("N8N webhook error (expected in demo):", webhookError);
+        // We still count the upload as successful
+        toast({
+          title: "File uploaded successfully",
+          description: "Your file content has been stored in the database.",
+        });
+      }
       
     } catch (error) {
       console.error("Error processing file:", error);
