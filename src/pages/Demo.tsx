@@ -50,13 +50,16 @@ const Demo = () => {
     }
   };
 
-  const uploadToSupabase = async (file: File, content: string) => {
+  const uploadToSupabase = async (file: File): Promise<string> => {
     try {
+      // Read the file as text
+      const fileContent = await file.text();
+      
       // Upload to Supabase transcripts table
       const { data, error } = await supabase
         .from('transcripts')
         .insert({
-          content: content,
+          content: fileContent,
           file_name: file.name,
           file_type: file.type,
           processed: false
@@ -101,11 +104,14 @@ const Demo = () => {
       });
     }, 1500);
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      // First process with n8n webhook
+      // First upload to Supabase
+      const transcriptId = await uploadToSupabase(file);
+      
+      // Then process with n8n webhook
+      const formData = new FormData();
+      formData.append("file", file);
+
       const response = await fetch(
         "https://almanakmap.app.n8n.cloud/webhook-test/explainly.ai",
         {
@@ -120,12 +126,6 @@ const Demo = () => {
 
       const data = await response.json();
       const summary = data.summary || "Here's a summary of the content you submitted.";
-      
-      // Read the file content to store in Supabase
-      const fileContent = await file.text();
-      
-      // Upload to Supabase
-      const transcriptId = await uploadToSupabase(file, fileContent);
       
       // Store the summary in Supabase
       const { error: summaryError } = await supabase
