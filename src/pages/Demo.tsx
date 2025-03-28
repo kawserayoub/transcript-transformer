@@ -88,7 +88,11 @@ const Demo = () => {
 
   const sendToN8NWebhook = async (filePath: string): Promise<any> => {
     try {
-      const webhookUrl = "https://almanakmap.app.n8n.cloud/webhook-test/explainly.ai";
+      // Updated webhook URL to match the format in the cURL command
+      const webhookUrl = "https://almanakmap.app.n8n.cloud/webhook/833efd65-7a27-48ca-8628-cb0e16c68e46";
+      
+      console.log("Sending webhook request to:", webhookUrl);
+      console.log("With file path:", filePath);
       
       // Set up proper headers and body
       // Using mode: 'no-cors' to handle CORS issues
@@ -296,4 +300,3 @@ const Demo = () => {
 };
 
 export default Demo;
-
