@@ -50,11 +50,16 @@ const Demo = () => {
     }
   };
 
-  const uploadToSupabase = async (file: File): Promise<string> => {
+  const uploadToSupabase = async (file: File): Promise<{ transcriptId: string, filePath: string }> => {
     try {
       // Read the file as text
       const fileContent = await file.text();
       
+      // Generate a unique file path
+      const filePathBucket = crypto.randomUUID();
+      const filePathName = crypto.randomUUID() + '.' + file.name.split('.').pop();
+      const filePath = `${filePathBucket}/${filePathName}`;
+
       // Upload to Supabase transcripts table
       const { data, error } = await supabase
         .from('transcripts')
@@ -62,6 +67,7 @@ const Demo = () => {
           content: fileContent,
           file_name: file.name,
           file_type: file.type,
+          file_path: filePath,
           processed: false
         })
         .select();
@@ -72,7 +78,7 @@ const Demo = () => {
       }
 
       console.log("File uploaded to Supabase:", data);
-      return data[0].id;
+      return { transcriptId: data[0].id, filePath: filePath };
     } catch (error) {
       console.error("Error in uploadToSupabase:", error);
       throw error;
@@ -105,18 +111,18 @@ const Demo = () => {
     }, 1500);
 
     try {
-      // First upload to Supabase
-      const transcriptId = await uploadToSupabase(file);
+      // First upload to Supabase to get transcript ID and file path
+      const { transcriptId, filePath } = await uploadToSupabase(file);
       
-      // Then process with n8n webhook
-      const formData = new FormData();
-      formData.append("file", file);
-
+      // Now send the file_path to the N8N webhook
       const response = await fetch(
         "https://almanakmap.app.n8n.cloud/webhook-test/explainly.ai",
         {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ file_path: filePath }),
         }
       );
 
