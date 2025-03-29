@@ -15,6 +15,11 @@ const Footer = () => {
             <p className="text-explainly-gray text-sm max-w-xs">
               Transform raw transcripts into AI-powered learning tools
             </p>
+            <div className="pt-2">
+              <Link to="/about" className="text-explainly-gray hover:text-explainly-blue transition-colors">
+                About Us
+              </Link>
+            </div>
           </div>
 
           <div className="space-y-4">
@@ -69,11 +74,6 @@ const Footer = () => {
               <li>
                 <Link to="/study-tips" className="text-explainly-gray hover:text-explainly-blue transition-colors">
                   Study Tips
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-explainly-gray hover:text-explainly-blue transition-colors">
-                  About
                 </Link>
               </li>
             </ul>
