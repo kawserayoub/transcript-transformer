@@ -1,6 +1,6 @@
 
 import Container from "@/components/Container";
-import { Brain } from "lucide-react";
+import { Brain, LineChart, BarChart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AIProcessing = () => {
@@ -14,34 +14,77 @@ const AIProcessing = () => {
             </div>
             
             <h1 className="text-3xl font-bold mb-4">
-              ⚙️ AI Visualization – Coming Soon!
+              📊 Learning Analytics
             </h1>
             
             <p className="text-lg text-explainly-gray mb-8">
-              Soon you'll be able to visualize how our AI processes your transcripts,
-              from raw text to structured learning materials.
+              Soon you'll be able to visualize your learning progress, track knowledge retention, 
+              and identify areas that need more attention.
             </p>
             
             <div className="w-full bg-explainly-lightGray rounded-lg p-6 mb-8">
-              <div className="relative h-48 flex flex-col justify-between">
-                {/* Visualization nodes */}
-                <div className="absolute left-0 top-4 w-24 h-24 rounded-lg bg-blue-500 bg-opacity-20 flex items-center justify-center border-2 border-blue-500">
-                  <div className="text-blue-700 font-medium text-sm">Raw Text</div>
+              <div className="relative h-48 flex items-center justify-center">
+                {/* Visualization elements */}
+                <div className="absolute w-full h-full">
+                  <div className="flex h-full">
+                    {/* Progress chart */}
+                    <div className="w-1/2 p-3">
+                      <div className="bg-white rounded-lg h-full p-3 shadow-sm border border-gray-200 flex flex-col">
+                        <div className="text-sm font-medium text-gray-600 mb-2">Learning Progress</div>
+                        <div className="flex-1 flex items-end space-x-1">
+                          <div className="w-1/5 bg-blue-200 rounded-t-sm h-[20%]"></div>
+                          <div className="w-1/5 bg-blue-300 rounded-t-sm h-[35%]"></div>
+                          <div className="w-1/5 bg-blue-400 rounded-t-sm h-[50%]"></div>
+                          <div className="w-1/5 bg-blue-500 rounded-t-sm h-[65%] animate-pulse"></div>
+                          <div className="w-1/5 bg-blue-600 rounded-t-sm h-[80%]"></div>
+                        </div>
+                        <div className="mt-2 flex justify-between text-xs text-gray-500">
+                          <span>Week 1</span>
+                          <span>Week 5</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Knowledge retention */}
+                    <div className="w-1/2 p-3">
+                      <div className="bg-white rounded-lg h-full p-3 shadow-sm border border-gray-200 flex flex-col">
+                        <div className="text-sm font-medium text-gray-600 mb-2">Topic Mastery</div>
+                        <div className="flex-1 flex flex-col justify-center">
+                          <div className="flex items-center mb-2">
+                            <div className="w-24 text-xs text-gray-600">Neural Networks</div>
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-green-500 h-2 rounded-full" style={{ width: '90%' }}></div>
+                            </div>
+                          </div>
+                          <div className="flex items-center mb-2">
+                            <div className="w-24 text-xs text-gray-600">Deep Learning</div>
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-green-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+                            </div>
+                          </div>
+                          <div className="flex items-center">
+                            <div className="w-24 text-xs text-gray-600">Algorithms</div>
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div className="bg-green-500 h-2 rounded-full animate-pulse" style={{ width: '40%' }}></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="absolute left-1/3 top-12 w-24 h-24 rounded-lg bg-purple-500 bg-opacity-20 flex items-center justify-center border-2 border-purple-500 animate-pulse">
-                  <div className="text-purple-700 font-medium text-sm">AI Processing</div>
+
+                {/* Analytics icons */}
+                <div className="absolute -top-3 left-1/4 transform -translate-x-1/2">
+                  <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                    <LineChart className="w-4 h-4 text-white" />
+                  </div>
                 </div>
-                
-                <div className="absolute right-0 top-4 w-24 h-24 rounded-lg bg-green-500 bg-opacity-20 flex items-center justify-center border-2 border-green-500">
-                  <div className="text-green-700 font-medium text-sm">Structured Content</div>
+                <div className="absolute -top-3 right-1/4 transform translate-x-1/2">
+                  <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                    <BarChart className="w-4 h-4 text-white" />
+                  </div>
                 </div>
-                
-                {/* Connection lines */}
-                <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  <line x1="24" y1="28" x2="108" y2="36" stroke="#6366f1" strokeWidth="2" strokeDasharray="4" />
-                  <line x1="144" y1="36" x2="228" y2="28" stroke="#6366f1" strokeWidth="2" strokeDasharray="4" />
-                </svg>
               </div>
             </div>
             
