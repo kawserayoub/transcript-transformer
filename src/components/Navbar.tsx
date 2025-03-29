@@ -78,7 +78,7 @@ const Navbar = () => {
                             to="/study-tips"
                             className="block p-2 hover:bg-gray-100 rounded-md text-explainly-navy hover:text-explainly-blue transition-colors"
                           >
-                            Personalized Study Tips
+                            Study Guidr
                           </Link>
                         </NavigationMenuLink>
                       </li>
@@ -162,7 +162,7 @@ const Navbar = () => {
                       className="block text-explainly-navy hover:text-explainly-blue transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Study Tips
+                      Study Guidr
                     </Link>
                   </div>
                 )}

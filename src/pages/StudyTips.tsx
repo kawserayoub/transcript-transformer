@@ -14,7 +14,7 @@ const StudyTips = () => {
             </div>
             
             <h1 className="text-3xl font-bold mb-4">
-              💡 Study Tips Assistant in progress!
+              💡 Study Guidr in progress!
             </h1>
             
             <p className="text-lg text-explainly-gray mb-8">

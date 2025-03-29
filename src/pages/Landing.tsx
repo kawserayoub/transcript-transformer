@@ -81,7 +81,7 @@ const Landing = () => {
               icon={<Lightbulb className="w-8 h-8 text-white" />}
             />
             <FeatureCard
-              title="Study Recommendations"
+              title="Study Guidr"
               description="Get personalized study plans based on content."
               icon={<BookOpen className="w-8 h-8 text-white" />}
             />

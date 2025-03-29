@@ -73,7 +73,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/study-tips" className="text-explainly-gray hover:text-explainly-blue transition-colors">
-                  Personalized Study Tips
+                  Study Guidr
                 </Link>
               </li>
             </ul>
