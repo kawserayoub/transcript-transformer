@@ -1,10 +1,11 @@
 
-import { File } from "lucide-react";
+import { File, AlertCircle } from "lucide-react";
 import Container from "@/components/Container";
 import SummaryCard from "@/components/SummaryCard";
 import FileUploader from "@/components/FileUploader";
 import ProcessingStatus from "@/components/ProcessingStatus";
 import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface DemoUIProps {
   isLoading: boolean;
@@ -13,6 +14,7 @@ interface DemoUIProps {
   file: File | null;
   setFile: (file: File | null) => void;
   summaryResult: string | null;
+  error: string | null;
   handleSubmit: (e: React.FormEvent) => Promise<void>;
   resetDemo: () => void;
 }
@@ -24,6 +26,7 @@ const DemoUI = ({
   file,
   setFile,
   summaryResult,
+  error,
   handleSubmit,
   resetDemo,
 }: DemoUIProps) => {
@@ -40,6 +43,14 @@ const DemoUI = ({
           </div>
 
           <div className="bg-white rounded-xl shadow-md p-6 md:p-8 animate-slide-up">
+            {error && !summaryResult && (
+              <Alert variant="destructive" className="mb-6">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+            
             {!summaryResult ? (
               <form onSubmit={handleSubmit}>
                 <FileUploader file={file} setFile={setFile} />

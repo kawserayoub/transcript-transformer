@@ -8,7 +8,6 @@ export const sendToN8NWebhook = async (filePath: string): Promise<any> => {
     console.log("With file path:", filePath);
     
     // Set up proper headers and body
-    // Using mode: 'no-cors' to handle CORS issues
     const response = await fetch(webhookUrl, {
       method: "POST",
       headers: {
@@ -20,9 +19,11 @@ export const sendToN8NWebhook = async (filePath: string): Promise<any> => {
 
     // When using no-cors, we won't get a full response
     console.log("Webhook request sent, waiting for processing");
+    
+    // Return whether the request was successful (no detailed response available with no-cors)
     return true;
   } catch (error) {
     console.error("Error sending to N8N webhook:", error);
-    throw error; // Re-throw the error to be handled by the caller
+    throw new Error("Failed to communicate with processing service. Please try again later.");
   }
 };
