@@ -48,7 +48,7 @@ const Navbar = () => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="bg-transparent text-explainly-navy hover:text-explainly-blue hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent">
-                    Upcoming Features
+                    Coming Soon
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-white border border-gray-200 shadow-md">
                     <ul className="grid w-[200px] gap-2 p-2">
@@ -58,7 +58,7 @@ const Navbar = () => {
                             to="/highlight-summary"
                             className="block p-2 hover:bg-gray-100 rounded-md text-explainly-navy hover:text-explainly-blue transition-colors"
                           >
-                            Highlighting
+                            Smart Highlighting
                           </Link>
                         </NavigationMenuLink>
                       </li>
@@ -68,7 +68,7 @@ const Navbar = () => {
                             to="/ai-processing"
                             className="block p-2 hover:bg-gray-100 rounded-md text-explainly-navy hover:text-explainly-blue transition-colors"
                           >
-                            AI Processing
+                            AI Visualization
                           </Link>
                         </NavigationMenuLink>
                       </li>
@@ -78,7 +78,7 @@ const Navbar = () => {
                             to="/study-tips"
                             className="block p-2 hover:bg-gray-100 rounded-md text-explainly-navy hover:text-explainly-blue transition-colors"
                           >
-                            Study Tips
+                            Personalized Study Tips
                           </Link>
                         </NavigationMenuLink>
                       </li>
@@ -137,7 +137,7 @@ const Navbar = () => {
                   onClick={toggleFeatures} 
                   className="flex items-center text-explainly-navy hover:text-explainly-blue transition-colors w-full justify-between"
                 >
-                  <span>Upcoming Features</span>
+                  <span>Coming Soon</span>
                   {featuresOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </button>
                 
@@ -148,14 +148,14 @@ const Navbar = () => {
                       className="block text-explainly-navy hover:text-explainly-blue transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Highlighting
+                      Smart Highlighting
                     </Link>
                     <Link
                       to="/ai-processing"
                       className="block text-explainly-navy hover:text-explainly-blue transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      AI Processing
+                      AI Visualization
                     </Link>
                     <Link
                       to="/study-tips"
