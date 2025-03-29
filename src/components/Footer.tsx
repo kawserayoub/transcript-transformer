@@ -59,21 +59,21 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-explainly-navy">Upcoming Features</h3>
+            <h3 className="text-lg font-semibold text-explainly-navy">Coming Soon</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/highlight-summary" className="text-explainly-gray hover:text-explainly-blue transition-colors">
-                  Highlighting
+                  Smart Highlighting
                 </Link>
               </li>
               <li>
                 <Link to="/ai-processing" className="text-explainly-gray hover:text-explainly-blue transition-colors">
-                  AI Processing
+                  AI Visualization
                 </Link>
               </li>
               <li>
                 <Link to="/study-tips" className="text-explainly-gray hover:text-explainly-blue transition-colors">
-                  Study Tips
+                  Personalized Study Tips
                 </Link>
               </li>
             </ul>
