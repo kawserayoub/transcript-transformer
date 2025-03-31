@@ -74,7 +74,7 @@ const Demo = () => {
   useEffect(() => {
     if (!isLoading || !transcriptId) return;
     
-    // Set a timeout of 30 seconds for processing
+    // Set a timeout of 5 minutes for processing
     const timeoutId = setTimeout(() => {
       if (isLoading && !summaryResult) {
         setIsLoading(false);
@@ -85,7 +85,7 @@ const Demo = () => {
           variant: "destructive",
         });
       }
-    }, 30000); // 30 seconds timeout
+    }, 300000); // 5 minutes timeout (300,000 milliseconds)
     
     return () => clearTimeout(timeoutId);
   }, [isLoading, transcriptId, summaryResult, toast]);
